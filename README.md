@@ -1,13 +1,13 @@
 # EXPERIMENT-02-INTERFACING-A-DIGITAL-INPUT-OUTPUT-TO-IOT-DEVELOPMENT-BOARD
 
 
-**DATE:**
+**DATE:22-04-26**
 
-**NAME:**
+**NAME: Iniyasri S**
 
-**ROLL NO:**
+**ROLL NO:212223230081**
 
-**DEPARTMENT:**
+**DEPARTMENT:AIDS**
 
 ## Aim
 
@@ -40,14 +40,15 @@ IR technology is used in a wide range of wireless applications which includes re
 
 1. Click on STM 32 CUBE IDE, the following screen will appear
    
- ![image](https://user-images.githubusercontent.com/36288975/226189166-ac10578c-c059-40e7-8b80-9f84f64bf088.png)
+<img width="1919" height="1199" alt="Screenshot 2026-05-01 134710" src="https://github.com/user-attachments/assets/7b5fd3d5-d18c-4807-9e6e-0fb9da0a3436" />
+
 
 
 2. Click on FILE, click on new stm 32 project
 
-![image](https://user-images.githubusercontent.com/36288975/226189215-2d13ebfb-507f-44fc-b772-02232e97c0e3.png)
+<img width="1919" height="1199" alt="Screenshot 2026-05-01 134817" src="https://github.com/user-attachments/assets/34c7499c-92b8-4adc-a1b4-d1f95b2b102b" />
+<img width="1919" height="1199" alt="Screenshot 2026-05-01 134943" src="https://github.com/user-attachments/assets/2f06d66b-8f3a-45c6-80db-bb2ff50ef29c" />
 
-![image](https://user-images.githubusercontent.com/36288975/226189230-bf2d90dd-9695-4aaf-b2a6-6d66454e81fc.png)
 
 3. Select the target to be programmed as shown below and click on next
 
@@ -75,16 +76,19 @@ IR technology is used in a wide range of wireless applications which includes re
 
 8. Edit the program and as per required 
 
-![image](https://user-images.githubusercontent.com/36288975/226189461-a573e62f-a109-4631-a250-a20925758fe0.png)
+<img width="1074" height="738" alt="image" src="https://github.com/user-attachments/assets/8e8663fc-97f5-4d1d-9fd4-a306490025e1" />
+
 
 
 9. Use project and build all 
 
-![image](https://user-images.githubusercontent.com/36288975/226189554-3f7101ac-3f41-48fc-abc7-480bd6218dec.png)
+<img width="1910" height="1199" alt="image" src="https://github.com/user-attachments/assets/d9cc13ff-0c75-446d-a731-0d374e2d3cc6" />
+
 
 10. Once the project is bulild 
 
-![image](https://user-images.githubusercontent.com/36288975/226189577-c61cc1eb-3990-4968-8aa6-aefffc766b70.png)
+<img width="717" height="264" alt="image" src="https://github.com/user-attachments/assets/0d7da003-4b2f-41e9-beef-e20640667dbc" />
+
 
 11. connect the iot board to power supply and usb
 
@@ -94,7 +98,8 @@ IR technology is used in a wide range of wireless applications which includes re
 
 
 13. Connect the STM board through the COM port, then upload the corresponding project ELF file/Hex file or Bin file in Erasing & Programming Window,while ensuring the board is in flash mode, and click on 'Start Program'.
-    ![image](https://github.com/user-attachments/assets/9383531d-8204-4697-9321-55afb6abee2e)
+    <img width="1600" height="859" alt="WhatsApp Image 2026-05-01 at 2 04 11 PM" src="https://github.com/user-attachments/assets/d6a6ed88-8382-4d66-910a-9abf3ce50c98" />
+
 
 14.  After the file download is complete, switch your board to run mode and press the reset button to see the output
 
@@ -102,10 +107,40 @@ IR technology is used in a wide range of wireless applications which includes re
 ## STM 32 CUBE PROGRAM
 
 ```
-// Your STM 32 CUBE Program code here
+#include "main.h"
+#include "stdbool.h"
+bool IRSENSOR;
+void IRPAIR();
+int main(void)
+{
+  HAL_Init();
+  SystemClock_Config();
+  MX_GPIO_Init();
+while (1)
+  {
+    IRPAIR();
+}
+void IRPAIR()
+{
+	IRSENSOR=HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_4);
+	if(IRSENSOR==0){
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_SET);
+		HAL_Delay(1000);
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
+		HAL_Delay(1000);
+	}
+	else{
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
+		HAL_Delay(1000);
+	}
+}
 ```
 
 ## OUTPUT
+<img width="900" height="1600" alt="WhatsApp Image 2026-05-01 at 2 19 41 PM" src="https://github.com/user-attachments/assets/df304fe4-c26e-49ba-802f-8b8681715f51" />
+<img width="900" height="1600" alt="WhatsApp Image 2026-05-01 at 2 19 41 PM (1)" src="https://github.com/user-attachments/assets/5d944a54-10ff-4aa1-9bca-a6351d634549" />
+
+
 
 ## Result
 
